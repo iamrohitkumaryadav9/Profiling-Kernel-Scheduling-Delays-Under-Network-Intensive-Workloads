@@ -4,7 +4,7 @@
 
 [![Linux](https://img.shields.io/badge/Linux-6.17+-yellow?logo=linux)](https://kernel.org)
 [![eBPF](https://img.shields.io/badge/eBPF-bpftrace-orange)](https://github.com/bpftrace/bpftrace)
-[![License](https://img.shields.io/badge/License-MIT-blue)](#license)
+[![Course](https://img.shields.io/badge/Course-Graduate%20Systems-green)](https://iiitd.ac.in)
 
 On commodity Linux systems, the kernel's softirq processing path (`NET_RX_SOFTIRQ`, NAPI poll, TCP/IP stack) competes directly with user-space threads for CPU time. This project uses **eBPF** to instrument the Linux scheduler and network subsystems, quantifying these invisible scheduling delays through **16 controlled experiments** (48 total runs) on a single-machine testbed with network namespaces and veth pairs.
 
@@ -203,6 +203,6 @@ sudo scripts/24_setup_testbed.sh teardown
 **Institution:** IIIT-Delhi  
 **Date:** March 2026
 
-## 📄 License
+## 📄 About
 
-This project is released under the MIT License.
+Academic project for the **Graduate Systems (GRS)** course at IIIT-Delhi, March 2026.
