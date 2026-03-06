@@ -1,0 +1,92 @@
+#!/usr/bin/env bpftrace
+/*
+ * 24_softirq_net.bt — Measure NET_RX/NET_TX softirq duration per CPU
+ *
+ * Computes "softirq CPU%" as:
+ *   softirq_cpu_pct[cpu] = sum(softirq_duration_us) / wall_clock_us * 100
+ * Tracked via @softirq_total_us[cpu] (cumulative) printed every interval.
+ *
+ * Guard against orphaned entry/exit by always deleting the start timestamp
+ * on exit, and overwriting on re-entry (handles nested/missed exits).
+ *
+ * No per-event printf — histogram-only for low overhead.
+ * Usage: sudo bpftrace 24_softirq_net.bt 2>softirq_histograms.txt
+ */
+
+BEGIN
+{
+    @start_wall = nsecs;
+    printf("interval_s,cpu,net_rx_total_us,net_tx_total_us,wall_us,softirq_cpu_pct\n");
+}
+
+tracepoint:irq:softirq_entry
+/args->vec == 3 || args->vec == 2/
+{
+    // Overwrite on re-entry: if a previous exit was missed, we lose that
+    // one sample rather than computing a bogus multi-second duration.
+    @softirq_start[cpu, args->vec] = nsecs;
+}
+
+tracepoint:irq:softirq_exit
+/args->vec == 3 || args->vec == 2/
+{
+    $key_cpu = cpu;
+    $key_vec = args->vec;
+    $start = @softirq_start[$key_cpu, $key_vec];
+
+    if ($start > 0) {
+        $duration = nsecs - $start;
+        $dur_us = $duration / 1000;
+
+        // Guard: discard obviously bogus durations (>500ms = likely missed event)
+        if ($dur_us < 500000) {
+            if ($key_vec == 3) {
+                @net_rx_duration_us[cpu] = hist($dur_us);
+                @net_rx_count[cpu] = count();
+                @net_rx_total_us[cpu] = sum($dur_us);
+            } else {
+                @net_tx_duration_us[cpu] = hist($dur_us);
+                @net_tx_count[cpu] = count();
+                @net_tx_total_us[cpu] = sum($dur_us);
+            }
+        }
+
+        delete(@softirq_start[$key_cpu, $key_vec]);
+    }
+}
+
+// Packet reception rate (counter only)
+tracepoint:net:netif_receive_skb
+{
+    @pkt_recv[cpu] = count();
+    @pkt_len = hist(args->len);
+}
+
+interval:s:5
+{
+    $wall_us = (nsecs - @start_wall) / 1000;
+
+    time();
+    printf("\n--- NET_RX softirq per CPU ---\n");
+    print(@net_rx_count);
+    print(@net_rx_duration_us);
+    printf("--- NET_RX cumulative us (for CPU%% calc) ---\n");
+    print(@net_rx_total_us);
+    printf("--- Wall clock us: %lu ---\n", $wall_us);
+    printf("--- Packets received per CPU ---\n");
+    print(@pkt_recv);
+}
+
+END
+{
+    print(@net_rx_duration_us);
+    print(@net_tx_duration_us);
+    printf("\n--- Cumulative softirq time per CPU (us) ---\n");
+    printf("NET_RX:\n");
+    print(@net_rx_total_us);
+    printf("NET_TX:\n");
+    print(@net_tx_total_us);
+    print(@pkt_recv);
+    print(@pkt_len);
+    clear(@softirq_start);
+}

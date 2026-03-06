@@ -1,0 +1,43 @@
+#!/usr/bin/env bpftrace
+/*
+ * 24_net_drops.bt — Monitor packet drops and TCP retransmissions
+ * Usage: sudo bpftrace 24_net_drops.bt 2>net_drops_histograms.txt
+ */
+
+BEGIN
+{
+    printf("timestamp_ns,cpu,event,info\n");
+}
+
+tracepoint:skb:kfree_skb
+{
+    @drop_count[cpu] = count();
+    @drop_location = hist(args->location);
+}
+
+kprobe:tcp_retransmit_skb
+{
+    @tcp_retrans[cpu] = count();
+    printf("%lu,%d,tcp_retrans,%p\n", nsecs, cpu, arg0);
+}
+
+kprobe:tcp_v4_syn_recv_sock
+{
+    @syn_recv[cpu] = count();
+}
+
+interval:s:5
+{
+    time();
+    print(@drop_count);
+    print(@tcp_retrans);
+}
+
+END
+{
+    print(@drop_count);
+    print(@drop_location);
+    print(@tcp_retrans);
+    printf("\n--- TCP SYN RECV ---\n");
+    print(@syn_recv);
+}

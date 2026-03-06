@@ -1,0 +1,17 @@
+TEX = 24_report
+PDFLATEX = pdflatex
+BIBTEX = bibtex
+
+all: $(TEX).pdf
+
+$(TEX).pdf: $(TEX).tex 24_references.bib
+	$(PDFLATEX) $(TEX)
+	$(BIBTEX) $(TEX)
+	$(PDFLATEX) $(TEX)
+	$(PDFLATEX) $(TEX)
+
+clean:
+	rm -f $(TEX).pdf $(TEX).aux $(TEX).bbl $(TEX).blg $(TEX).log \
+	      $(TEX).out $(TEX).toc $(TEX).lof $(TEX).lot
+
+.PHONY: all clean

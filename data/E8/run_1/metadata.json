@@ -1,0 +1,15 @@
+{
+    "experiment": "E8",
+    "run": 1,
+    "cpu_stress": "heavy",
+    "net_load": "high",
+    "rps_placement": "rps_pinned",
+    "app_pin": "pinned",
+    "cfs_tuning": "default",
+    "softirq_mode": "default",
+    "protocol": "tcp",
+    "duration_s": 60,
+    "num_cpus": 8,
+    "kernel": "6.17.0-14-generic",
+    "timestamp": "2026-03-05T10:02:22Z"
+}

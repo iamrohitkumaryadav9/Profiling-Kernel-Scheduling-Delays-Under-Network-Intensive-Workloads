@@ -1,0 +1,3 @@
+/home/rohitkumaryadav/Desktop/GRS Project/MT25037/scripts/../ebpf_tools/24_net_drops.bt:15:22-42: ERROR: hist() only supports integer arguments (pointer provided)
+    @drop_location = hist(args->location);
+                     ~~~~~~~~~~~~~~~~~~~~

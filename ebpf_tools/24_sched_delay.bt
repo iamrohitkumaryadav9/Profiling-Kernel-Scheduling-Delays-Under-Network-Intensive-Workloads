@@ -1,0 +1,80 @@
+#!/usr/bin/env bpftrace
+/*
+ * 24_sched_delay.bt — Measure per-process runqueue delay (wakeup → scheduled)
+ *
+ * Strategy: histogram-only aggregation in-kernel. No per-event printf.
+ * Low overhead (target <5%) even under millions of sched_switch/sec.
+ * Per-event CSV sampling is available via the @sample_count gate
+ * (1-in-1000 events are printed for spot-checking).
+ *
+ * Usage: sudo bpftrace 24_sched_delay.bt 2>sched_delay_histograms.txt
+ */
+
+BEGIN
+{
+    printf("timestamp_ns,pid,comm,cpu,delay_us,event\n");
+    @sample_gate = (uint64) 0;
+}
+
+tracepoint:sched:sched_wakeup
+{
+    @wakeup_ts[args->pid] = nsecs;
+}
+
+tracepoint:sched:sched_wakeup_new
+{
+    @wakeup_ts[args->pid] = nsecs;
+}
+
+tracepoint:sched:sched_switch
+/args->next_pid != 0 && @wakeup_ts[args->next_pid]/
+{
+    $delay = nsecs - @wakeup_ts[args->next_pid];
+    $delay_us = $delay / 1000;
+
+    // ── Primary output: in-kernel histograms (zero overhead) ──
+    @runq_delay_us = hist($delay_us);
+    @per_proc[args->next_comm] = hist($delay_us);
+
+    // ── Sampled CSV: 1-in-1000 events for spot-checking ──
+    @sample_gate++;
+    if (@sample_gate % 1000 == 0) {
+        printf("%lu,%d,%s,%d,%lu,switch\n",
+            nsecs, args->next_pid, args->next_comm, cpu, $delay_us);
+    }
+
+    delete(@wakeup_ts[args->next_pid]);
+}
+
+// Context switch accounting (counters only — negligible overhead)
+tracepoint:sched:sched_switch
+{
+    @ctx_switches = count();
+    @per_cpu_switches[cpu] = count();
+
+    if (args->prev_state == 0) {  // TASK_RUNNING = preempted
+        @involuntary = count();
+    } else {
+        @voluntary = count();
+    }
+}
+
+interval:s:1
+{
+    time();
+    print(@runq_delay_us);
+    print(@ctx_switches);
+}
+
+END
+{
+    print(@runq_delay_us);
+    print(@per_proc);
+    print(@per_cpu_switches);
+    printf("\nVoluntary: ");
+    print(@voluntary);
+    printf("Involuntary: ");
+    print(@involuntary);
+    clear(@wakeup_ts);
+    clear(@sample_gate);
+}

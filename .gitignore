@@ -1,0 +1,38 @@
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Gemini/agent artifacts (not part of the project)
+.gemini/
+.agents/
+
+# Keep the compiled PDF (useful for submission)
+# !report/24_report.pdf
+
+# Old/irrelevant plots from wrong project
+plots/fig*.png

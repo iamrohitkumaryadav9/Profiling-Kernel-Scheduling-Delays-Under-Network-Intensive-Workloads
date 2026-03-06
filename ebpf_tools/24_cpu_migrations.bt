@@ -1,0 +1,30 @@
+#!/usr/bin/env bpftrace
+/*
+ * 24_cpu_migrations.bt — Track task migrations across CPUs
+ * Usage: sudo bpftrace 24_cpu_migrations.bt 2>migrations.txt
+ */
+
+BEGIN
+{
+    printf("timestamp_ns,pid,comm,orig_cpu,dest_cpu\n");
+}
+
+tracepoint:sched:sched_migrate_task
+{
+    @migrations[args->pid, args->comm] = count();
+    @migration_pairs[args->orig_cpu, args->dest_cpu] = count();
+    printf("%lu,%d,%s,%d,%d\n",
+        nsecs, args->pid, args->comm, args->orig_cpu, args->dest_cpu);
+}
+
+interval:s:5
+{
+    time();
+    print(@migrations);
+}
+
+END
+{
+    print(@migrations);
+    print(@migration_pairs);
+}
