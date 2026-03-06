@@ -192,6 +192,7 @@ stop_server() {
         unset ECHO_SERVER_PID
     fi
     pkill -f 24_busy_poll_echo_server 2>/dev/null || true
+    pkill memcslap 2>/dev/null || true
     pkill memcached 2>/dev/null || true
     pkill iperf3 2>/dev/null || true
     sleep 1
@@ -261,18 +262,36 @@ run_load() {
 
     echo "  Running load for ${DURATION}s (warmup=${WARMUP}s)..."
 
-    # Warmup (no measurement)
-    ip netns exec cli iperf3 -c "$SERVER_IP" -t "$WARMUP" $bandwidth $udp_flag \
-        --json > /dev/null 2>&1 || true
-
-    # Actual measurement
+    # Pin flag for app-pinned experiments
     local pin_flag=""
     if [[ "$APP_PIN" == "pinned" ]]; then
         pin_flag="taskset -c 2,3"
     fi
 
+    # ─── Warmup phase ───
+    # iperf3 warmup (network saturation)
+    ip netns exec cli iperf3 -c "$SERVER_IP" -t "$WARMUP" $bandwidth $udp_flag \
+        --json > /dev/null 2>&1 || true
+
+    # memcslap warmup (pre-populate keys in memcached)
+    ip netns exec cli $pin_flag memcslap -s "$SERVER_IP:11211" \
+        -T 2 -c 32 -t 5s > /dev/null 2>&1 || true
+
+    # ─── Measurement phase ───
+    # Start memcslap in background (application-level latency)
+    ip netns exec cli $pin_flag memcslap -s "$SERVER_IP:11211" \
+        -T 2 -c 32 -t "${DURATION}s" \
+        > "$outdir/memcslap_result.txt" 2>&1 &
+    local MEMCSLAP_PID=$!
+    echo "  memcslap started (PID=$MEMCSLAP_PID, -T2 -c32)"
+
+    # Run iperf3 in foreground (blocks until done)
     ip netns exec cli $pin_flag iperf3 -c "$SERVER_IP" -t "$DURATION" $bandwidth $udp_flag \
         --json > "$outdir/iperf3_result.json" 2>&1 || true
+
+    # Wait for memcslap to finish
+    wait "$MEMCSLAP_PID" 2>/dev/null || true
+    echo "  memcslap completed → $outdir/memcslap_result.txt"
 }
 
 # ─── Main loop ───────────────────────────────────────────────────
@@ -304,6 +323,9 @@ for run in $(seq 1 "$RUNS"); do
     "cfs_tuning": "$CFS_TUNING",
     "softirq_mode": "$SOFTIRQ_MODE",
     "protocol": "$PROTOCOL",
+    "memcached": true,
+    "memcslap_threads": 2,
+    "memcslap_connections": 32,
     "duration_s": $DURATION,
     "num_cpus": $NUM_CPUS,
     "kernel": "$(uname -r)",
