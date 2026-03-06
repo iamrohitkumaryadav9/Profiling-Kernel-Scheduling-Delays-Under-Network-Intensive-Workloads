@@ -1,6 +1,6 @@
 # Project Status Tracker
 
-> **Last updated:** 2026-02-17  
+> **Last updated:** 2026-03-06  
 > **Project:** Profiling Kernel Scheduling Delays Under Network-Intensive Workloads  
 > **Reference:** [24_PROJECT_BLUEPRINT.md](./24_PROJECT_BLUEPRINT.md)
 
@@ -151,10 +151,10 @@ All scripts in `scripts/`.
 - [x] E8: Heavy/High/RPS→CPU0/Pinned — RPS + app pinning (3 runs, 60s)
 
 ### 4.2 Validate H1 (Softirq Colocation Hypothesis)
-- [x] E4 vs E5 comparison: RPS pinning shifts CPU0 softirq share 0%→13.6%, Gini 0.63→0.40
-- [x] E4 vs E6 comparison: RPS spread reduces max-CPU fraction 20.9%→20.1%, Gini 0.63→0.52
-- [x] E8 analysis: app CPUs 2,3 handle 82.6% of softirqs (colocation, not isolation — softirq follows the socket)
-- [x] 5 comparison plots produced (`plots/h1_*.png`)
+- [x] E4 vs E5 comparison: RPS pinning shifts CPU0 softirq share 3.1%→3.8%, Gini 0.712→0.697
+- [x] E4 vs E6 comparison: RPS spread reduces max-CPU fraction 22.8%→16.8%, Gini 0.712→0.662
+- [x] E8 analysis: app CPUs 2,3 handle 61.6% of softirqs (colocation, not isolation — softirq follows the socket)
+- [x] 5 comparison plots produced (`plots/24_h1_*.png`)
 
 ---
 
@@ -168,9 +168,9 @@ All scripts in `scripts/`.
 - [x] E13: Moderate CPU contention — inflection point (3 runs, 60s)
 
 ### 5.2 Validate H2 & H3
-- [x] H2: E10 ksoftirqd p99=2ms ≈ E4 p99=2ms — no improvement; time_squeeze delta=0 (NAPI budget ineffective on veth)
-- [x] H3: E12 UDP p99=32ms >> E4 TCP p99=2ms — reversed! UDP worse under stress (no flow control → more softirq)
-- [x] E13 p99=128μs (below 1ms); E3/E4 p99=2–4ms — threshold crossed between moderate and heavy CPU stress
+- [x] H2: E10 ksoftirqd p99=4,096μs ≈ E4 p99=4,096μs — no improvement; time_squeeze delta=0 (NAPI budget ineffective on veth)
+- [x] H3: E12 UDP p99=4,096μs = E4 TCP p99=4,096μs — equivalent under stress (CPU contention dominates over protocol)
+- [x] E13 p99=683μs (below 1ms); E3/E4 p99=4,096μs — threshold crossed between moderate and heavy CPU stress
 
 ---
 
@@ -182,11 +182,11 @@ All scripts in `scripts/`.
 - [x] E16: SO_BUSY_POLL only on custom echo server (3 runs, 60s)
 
 ### 6.2 Validate H4 (Combined Mitigations)
-- [x] E14 p99=4ms > E4 p99=2ms — combined mitigations (RPS+pinning+CFS lowlat) did NOT reduce latency
-- [x] E15 p99=4ms (RPS spread + busy_poll) — busy_poll active, no p99 improvement
-- [x] E16 p99=4ms (busy_poll only) — busy_poll active, no p99 improvement
-- [x] ✅ busy_poll DOES reduce vol_switches by 67%: E15=1.10M, E16=1.06M vs E4=3.31M (consistent across all runs)
-- [x] E14 vol_switches=3.08M (no busy_poll) ≈ E4=3.31M → confirms reduction is from busy_poll specifically
+- [x] E14 p99=4,096μs ≈ E4 p99=4,096μs — combined mitigations (RPS+pinning+CFS lowlat) did NOT reduce latency
+- [x] E15 p99=4,096μs (RPS spread + busy_poll) — busy_poll active, no p99 improvement
+- [x] E16 p99=4,096μs (busy_poll only) — busy_poll active, no p99 improvement
+- [x] ✅ busy_poll DOES reduce vol_switches by 25%: E16=0.37M vs E4=0.49M (consistent across all runs)
+- [x] E14 vol_switches=0.49M (no busy_poll) ≈ E4=0.49M → confirms reduction is from busy_poll specifically
 - [x] Bottleneck is CPU contention with stress-ng, not context-switch overhead → p99 unaffected
 - [x] No mitigation achieved ≥20% p99 improvement — veth bypasses kernel fast-paths that mitigations target
 
@@ -201,7 +201,7 @@ All scripts in `scripts/`.
 - [x] Cross-experiment: normalize to E1 baseline, compute degradation factors
 - [x] Correlation: softirq Gini coefficient vs scheduling delay (scatter plot)
 
-### 7.2 Produce Plots (32 total in plots/)
+### 7.2 Produce Plots (34 total in plots/)
 - [x] 24_runqueue_delay_cdf_all.png — CDF overlay of all 16 experiments
 - [x] 24_percentile_comparison.png — p50/p99/p99.9 bar chart
 - [x] 24_softirq_cpu_heatmap.png — CPU × experiment softirq %
