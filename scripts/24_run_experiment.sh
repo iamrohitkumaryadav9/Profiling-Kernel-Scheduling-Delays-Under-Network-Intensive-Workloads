@@ -275,15 +275,15 @@ run_load() {
 
     # memcslap warmup (pre-populate keys in memcached)
     ip netns exec cli $pin_flag memcslap -s "$SERVER_IP:11211" \
-        -T 2 -c 32 -t 5s > /dev/null 2>&1 || true
+        -c 32 --execute-number=10000 > /dev/null 2>&1 || true
 
     # ─── Measurement phase ───
     # Start memcslap in background (application-level latency)
     ip netns exec cli $pin_flag memcslap -s "$SERVER_IP:11211" \
-        -T 2 -c 32 -t "${DURATION}s" \
+        -c 32 --execute-number=10000000 \
         > "$outdir/memcslap_result.txt" 2>&1 &
     local MEMCSLAP_PID=$!
-    echo "  memcslap started (PID=$MEMCSLAP_PID, -T2 -c32)"
+    echo "  memcslap started (PID=$MEMCSLAP_PID, -c32 --execute-number=10000000)"
 
     # Run iperf3 in foreground (blocks until done)
     ip netns exec cli $pin_flag iperf3 -c "$SERVER_IP" -t "$DURATION" $bandwidth $udp_flag \
