@@ -1,0 +1,1 @@
+memcslap: invalid option -- 'T'
