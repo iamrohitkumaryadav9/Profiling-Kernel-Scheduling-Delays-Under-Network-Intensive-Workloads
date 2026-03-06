@@ -347,6 +347,20 @@ E4  & 8   & 4,096 & 8,192  & 0.49 & Heavy stress, high net \\
   \label{fig:percentiles}
 \end{figure}
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{24_timeseries_stress_progression.png}
+  \caption{Time-series view of stress progression (E1 $\to$ E13 $\to$ E4). Each column shows one experiment with throughput, p50/p99 scheduling delay, and softirq CPU\% over the 60\,s measurement window. E4 shows sustained high delay throughout.}
+  \label{fig:timeseries_progression}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{24_timeseries_comparison.png}
+  \caption{Overlay comparison of key experiments: throughput, scheduling delay (p99), and softirq CPU\% evolving over time. E4 (heavy stress) maintains consistently elevated delay while E1 (baseline) remains sub-millisecond throughout.}
+  \label{fig:timeseries_comparison}
+\end{figure}
+
 \subsection{Softirq Distribution (H1)}
 
 \begin{figure}[H]
