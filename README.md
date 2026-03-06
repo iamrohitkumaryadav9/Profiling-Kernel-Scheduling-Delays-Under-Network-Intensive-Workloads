@@ -123,7 +123,7 @@ On commodity Linux systems, the kernel's softirq processing path (`NET_RX_SOFTIR
 ```bash
 sudo apt update && sudo apt install -y \
     bpftrace bpfcc-tools linux-tools-$(uname -r) \
-    iperf3 stress-ng \
+    iperf3 stress-ng memcached libmemcached-tools \
     python3-matplotlib python3-numpy
 ```
 
@@ -134,6 +134,8 @@ sudo apt update && sudo apt install -y \
 | bpftrace | ≥ 0.17.0 |
 | iperf3 | ≥ 3.9 |
 | stress-ng | ≥ 0.13 |
+| memcached | ≥ 1.6 |
+| memcslap | libmemcached-tools ≥ 1.1 |
 | Python 3 | ≥ 3.9 (matplotlib, numpy) |
 | CPU cores | ≥ 4 (8 recommended) |
 
@@ -185,7 +187,6 @@ sudo scripts/24_setup_testbed.sh teardown
 ## ⚠️ Known Limitations
 
 - **veth vs physical NIC**: veth bypasses hardware IRQ paths; RPS behavior differs from physical NICs
-- **iperf3 as workload**: Measures bandwidth, not application-level request latency
 - **Two eBPF scripts had bugs**: `24_net_drops.bt` (`hist()` pointer error) and `24_cpu_migrations.bt` (`printf %s` type error) — data collected via `/proc` pollers instead
 - **Histogram saturation**: p99 values cap at 4,096 μs bucket for stressed experiments
 - **Sample size n=3**: Limited statistical power
