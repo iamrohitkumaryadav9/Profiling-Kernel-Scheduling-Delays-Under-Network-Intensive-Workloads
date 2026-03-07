@@ -12,7 +12,7 @@ BEGIN
 tracepoint:skb:kfree_skb
 {
     @drop_count[cpu] = count();
-    @drop_location = hist(args->location);
+    @drop_location[args->location] = count();
 }
 
 kprobe:tcp_retransmit_skb

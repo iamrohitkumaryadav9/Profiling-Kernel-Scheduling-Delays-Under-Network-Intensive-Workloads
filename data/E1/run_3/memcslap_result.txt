@@ -1,1 +1,6 @@
-memcslap: invalid option -- 'T'
+Time to generate     500000 test keys:                1.082 seconds.
+Time to start            32 threads:                  0.005 seconds.
+--------------------------------------------------------------------
+Time to set        16000000 keys by   32 threads:   249.273 seconds.
+--------------------------------------------------------------------
+Time total:                                         250.359 seconds.

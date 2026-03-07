@@ -8,8 +8,11 @@
     "cfs_tuning": "default",
     "softirq_mode": "default",
     "protocol": "tcp",
+    "memcached": true,
+    "memcslap_threads": 2,
+    "memcslap_connections": 32,
     "duration_s": 60,
     "num_cpus": 8,
     "kernel": "6.17.0-14-generic",
-    "timestamp": "2026-03-05T10:03:46Z"
+    "timestamp": "2026-03-07T04:45:45Z"
 }

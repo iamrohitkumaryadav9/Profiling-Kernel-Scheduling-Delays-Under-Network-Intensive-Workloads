@@ -1,3 +1,732 @@
-/home/rohitkumaryadav/Desktop/GRS Project/MT25037/scripts/../ebpf_tools/24_net_drops.bt:15:22-42: ERROR: hist() only supports integer arguments (pointer provided)
-    @drop_location = hist(args->location);
-                     ~~~~~~~~~~~~~~~~~~~~
+timestamp_ns,cpu,event,info
+10:56:35
+@drop_count[7]: 2
+@drop_count[2]: 2
+@drop_count[4]: 6
+@drop_count[5]: 6
+@drop_count[3]: 8
+@drop_count[1]: 9
+@drop_count[6]: 16
+@drop_count[0]: 83
+
+10:56:45
+@drop_count[5]: 15
+@drop_count[2]: 42
+@drop_count[1]: 78
+@drop_count[7]: 89
+@drop_count[3]: 131
+@drop_count[6]: 160
+@drop_count[4]: 162
+@drop_count[0]: 662
+
+10:56:50
+@drop_count[5]: 22
+@drop_count[2]: 42
+@drop_count[1]: 79
+@drop_count[7]: 135
+@drop_count[3]: 144
+@drop_count[6]: 220
+@drop_count[4]: 320
+@drop_count[0]: 1143
+
+10:56:55
+@drop_count[5]: 24
+@drop_count[2]: 42
+@drop_count[1]: 80
+@drop_count[6]: 268
+@drop_count[4]: 322
+@drop_count[7]: 344
+@drop_count[3]: 349
+@drop_count[0]: 1278
+
+10:57:00
+@drop_count[5]: 33
+@drop_count[2]: 49
+@drop_count[1]: 80
+@drop_count[6]: 311
+@drop_count[4]: 355
+@drop_count[3]: 469
+@drop_count[7]: 805
+@drop_count[0]: 1536
+
+10:57:05
+@drop_count[5]: 33
+@drop_count[2]: 52
+@drop_count[1]: 89
+@drop_count[6]: 318
+@drop_count[4]: 477
+@drop_count[3]: 544
+@drop_count[7]: 1031
+@drop_count[0]: 2131
+
+10:57:10
+@drop_count[5]: 33
+@drop_count[2]: 58
+@drop_count[1]: 110
+@drop_count[6]: 344
+@drop_count[3]: 553
+@drop_count[4]: 637
+@drop_count[7]: 1042
+@drop_count[0]: 2686
+
+10:57:15
+@drop_count[5]: 67
+@drop_count[2]: 70
+@drop_count[1]: 128
+@drop_count[6]: 396
+@drop_count[3]: 676
+@drop_count[4]: 734
+@drop_count[7]: 1102
+@drop_count[0]: 3125
+
+10:57:20
+@drop_count[5]: 102
+@drop_count[2]: 182
+@drop_count[1]: 301
+@drop_count[6]: 504
+@drop_count[3]: 728
+@drop_count[4]: 742
+@drop_count[7]: 1155
+@drop_count[0]: 3281
+
+10:57:25
+@drop_count[5]: 107
+@drop_count[2]: 241
+@drop_count[1]: 311
+@drop_count[6]: 745
+@drop_count[4]: 758
+@drop_count[3]: 781
+@drop_count[7]: 1233
+@drop_count[0]: 4146
+
+10:57:30
+@drop_count[5]: 186
+@drop_count[2]: 246
+@drop_count[1]: 396
+@drop_count[4]: 761
+@drop_count[6]: 765
+@drop_count[3]: 905
+@drop_count[7]: 1252
+@drop_count[0]: 4254
+
+10:57:35
+@drop_count[2]: 253
+@drop_count[5]: 359
+@drop_count[1]: 688
+@drop_count[4]: 769
+@drop_count[6]: 774
+@drop_count[3]: 908
+@drop_count[7]: 1266
+@drop_count[0]: 4343
+
+10:57:40
+@drop_count[2]: 280
+@drop_count[5]: 363
+@drop_count[4]: 772
+@drop_count[1]: 839
+@drop_count[6]: 849
+@drop_count[3]: 1047
+@drop_count[7]: 1536
+@drop_count[0]: 4804
+
+10:57:45
+@drop_count[2]: 285
+@drop_count[5]: 446
+@drop_count[4]: 783
+@drop_count[6]: 852
+@drop_count[1]: 864
+@drop_count[3]: 1075
+@drop_count[7]: 1755
+@drop_count[0]: 5094
+
+10:57:50
+@drop_count[2]: 393
+@drop_count[5]: 477
+@drop_count[4]: 848
+@drop_count[1]: 926
+@drop_count[6]: 1074
+@drop_count[3]: 1106
+@drop_count[7]: 1795
+@drop_count[0]: 5279
+
+10:57:55
+@drop_count[2]: 459
+@drop_count[5]: 491
+@drop_count[4]: 865
+@drop_count[1]: 959
+@drop_count[6]: 1109
+@drop_count[3]: 1125
+@drop_count[7]: 1813
+@drop_count[0]: 5375
+
+10:58:00
+@drop_count[2]: 522
+@drop_count[5]: 550
+@drop_count[4]: 909
+@drop_count[1]: 991
+@drop_count[3]: 1149
+@drop_count[6]: 1155
+@drop_count[7]: 1865
+@drop_count[0]: 5480
+
+10:58:05
+@drop_count[2]: 567
+@drop_count[5]: 592
+@drop_count[4]: 939
+@drop_count[1]: 999
+@drop_count[6]: 1186
+@drop_count[3]: 1202
+@drop_count[7]: 1886
+@drop_count[0]: 5553
+
+10:58:10
+@drop_count[5]: 603
+@drop_count[2]: 629
+@drop_count[4]: 993
+@drop_count[1]: 1022
+@drop_count[6]: 1221
+@drop_count[3]: 1274
+@drop_count[7]: 1915
+@drop_count[0]: 5633
+
+10:58:15
+@drop_count[5]: 646
+@drop_count[2]: 678
+@drop_count[4]: 995
+@drop_count[1]: 1097
+@drop_count[6]: 1269
+@drop_count[3]: 1344
+@drop_count[7]: 1969
+@drop_count[0]: 5683
+
+10:58:20
+@drop_count[5]: 661
+@drop_count[2]: 697
+@drop_count[4]: 995
+@drop_count[1]: 1110
+@drop_count[6]: 1290
+@drop_count[3]: 1355
+@drop_count[7]: 1977
+@drop_count[0]: 5740
+
+10:58:25
+@drop_count[5]: 709
+@drop_count[2]: 763
+@drop_count[4]: 995
+@drop_count[1]: 1145
+@drop_count[6]: 1349
+@drop_count[3]: 1399
+@drop_count[7]: 2018
+@drop_count[0]: 5874
+
+12080182015919,0,tcp_retrans,0xffff8d6c2d219c80
+10:58:30
+@drop_count[5]: 739
+@drop_count[2]: 810
+@drop_count[4]: 995
+@drop_count[1]: 1197
+@drop_count[6]: 1361
+@drop_count[3]: 1427
+@drop_count[7]: 2038
+@drop_count[0]: 5945
+@tcp_retrans[0]: 1
+10:58:35
+@drop_count[5]: 754
+@drop_count[2]: 825
+@drop_count[4]: 995
+@drop_count[1]: 1215
+@drop_count[6]: 1397
+@drop_count[3]: 1504
+@drop_count[7]: 2086
+@drop_count[0]: 6048
+@tcp_retrans[0]: 1
+10:58:40
+@drop_count[5]: 779
+@drop_count[2]: 846
+@drop_count[4]: 1001
+@drop_count[1]: 1284
+@drop_count[6]: 1422
+@drop_count[3]: 1557
+@drop_count[7]: 2107
+@drop_count[0]: 6125
+@tcp_retrans[0]: 1
+10:58:45
+@drop_count[5]: 792
+@drop_count[2]: 866
+@drop_count[4]: 1028
+@drop_count[1]: 1297
+@drop_count[6]: 1442
+@drop_count[3]: 1568
+@drop_count[7]: 2114
+@drop_count[0]: 6192
+@tcp_retrans[0]: 1
+10:58:50
+@drop_count[5]: 839
+@drop_count[2]: 969
+@drop_count[4]: 1117
+@drop_count[1]: 1317
+@drop_count[6]: 1504
+@drop_count[3]: 1571
+@drop_count[7]: 2156
+@drop_count[0]: 6379
+@tcp_retrans[0]: 1
+10:58:55
+@drop_count[5]: 855
+@drop_count[2]: 987
+@drop_count[4]: 1119
+@drop_count[1]: 1341
+@drop_count[6]: 1528
+@drop_count[3]: 1594
+@drop_count[7]: 2167
+@drop_count[0]: 6409
+@tcp_retrans[0]: 1
+10:59:00
+@drop_count[5]: 880
+@drop_count[2]: 1025
+@drop_count[4]: 1122
+@drop_count[1]: 1382
+@drop_count[6]: 1548
+@drop_count[3]: 1600
+@drop_count[7]: 2168
+@drop_count[0]: 6507
+@tcp_retrans[0]: 1
+10:59:05
+@drop_count[5]: 928
+@drop_count[2]: 1062
+@drop_count[4]: 1159
+@drop_count[1]: 1440
+@drop_count[6]: 1589
+@drop_count[3]: 1601
+@drop_count[7]: 2195
+@drop_count[0]: 6653
+@tcp_retrans[0]: 1
+10:59:10
+@drop_count[5]: 944
+@drop_count[2]: 1063
+@drop_count[4]: 1176
+@drop_count[1]: 1460
+@drop_count[3]: 1602
+@drop_count[6]: 1616
+@drop_count[7]: 2202
+@drop_count[0]: 6691
+@tcp_retrans[0]: 1
+10:59:15
+@drop_count[5]: 998
+@drop_count[2]: 1113
+@drop_count[4]: 1193
+@drop_count[1]: 1510
+@drop_count[3]: 1602
+@drop_count[6]: 1640
+@drop_count[7]: 2240
+@drop_count[0]: 6845
+@tcp_retrans[0]: 1
+10:59:20
+@drop_count[5]: 1019
+@drop_count[2]: 1173
+@drop_count[4]: 1211
+@drop_count[1]: 1533
+@drop_count[3]: 1625
+@drop_count[6]: 1659
+@drop_count[7]: 2240
+@drop_count[0]: 6971
+@tcp_retrans[0]: 1
+10:59:25
+@drop_count[5]: 1025
+@drop_count[2]: 1190
+@drop_count[4]: 1267
+@drop_count[1]: 1553
+@drop_count[3]: 1660
+@drop_count[6]: 1670
+@drop_count[7]: 2248
+@drop_count[0]: 7098
+@tcp_retrans[0]: 1
+10:59:30
+@drop_count[5]: 1034
+@drop_count[2]: 1210
+@drop_count[4]: 1325
+@drop_count[1]: 1643
+@drop_count[6]: 1671
+@drop_count[3]: 1698
+@drop_count[7]: 2269
+@drop_count[0]: 7228
+@tcp_retrans[0]: 1
+10:59:35
+@drop_count[5]: 1042
+@drop_count[2]: 1216
+@drop_count[4]: 1338
+@drop_count[1]: 1658
+@drop_count[6]: 1674
+@drop_count[3]: 1734
+@drop_count[7]: 2297
+@drop_count[0]: 7262
+@tcp_retrans[0]: 1
+10:59:40
+@drop_count[5]: 1062
+@drop_count[2]: 1217
+@drop_count[4]: 1346
+@drop_count[1]: 1673
+@drop_count[6]: 1690
+@drop_count[3]: 1749
+@drop_count[7]: 2307
+@drop_count[0]: 7356
+@tcp_retrans[0]: 1
+10:59:45
+@drop_count[5]: 1102
+@drop_count[2]: 1299
+@drop_count[4]: 1392
+@drop_count[1]: 1680
+@drop_count[6]: 1698
+@drop_count[3]: 1797
+@drop_count[7]: 2349
+@drop_count[0]: 7468
+@tcp_retrans[0]: 1
+10:59:50
+@drop_count[5]: 1116
+@drop_count[2]: 1333
+@drop_count[4]: 1429
+@drop_count[6]: 1705
+@drop_count[1]: 1726
+@drop_count[3]: 1880
+@drop_count[7]: 2389
+@drop_count[0]: 7534
+@tcp_retrans[0]: 1
+10:59:55
+@drop_count[5]: 1149
+@drop_count[2]: 1367
+@drop_count[4]: 1455
+@drop_count[6]: 1732
+@drop_count[1]: 1757
+@drop_count[3]: 1901
+@drop_count[7]: 2434
+@drop_count[0]: 7680
+@tcp_retrans[0]: 1
+11:00:00
+@drop_count[5]: 1165
+@drop_count[2]: 1433
+@drop_count[4]: 1476
+@drop_count[6]: 1733
+@drop_count[1]: 1774
+@drop_count[3]: 1933
+@drop_count[7]: 2487
+@drop_count[0]: 7776
+@tcp_retrans[0]: 1
+11:00:05
+@drop_count[5]: 1184
+@drop_count[2]: 1474
+@drop_count[4]: 1497
+@drop_count[6]: 1734
+@drop_count[1]: 1825
+@drop_count[3]: 1963
+@drop_count[7]: 2527
+@drop_count[0]: 7866
+@tcp_retrans[0]: 1
+11:00:10
+@drop_count[5]: 1214
+@drop_count[4]: 1523
+@drop_count[2]: 1527
+@drop_count[6]: 1737
+@drop_count[1]: 1960
+@drop_count[3]: 2005
+@drop_count[7]: 2543
+@drop_count[0]: 7945
+@tcp_retrans[0]: 1
+11:00:15
+@drop_count[5]: 1233
+@drop_count[4]: 1538
+@drop_count[2]: 1571
+@drop_count[6]: 1737
+@drop_count[1]: 1983
+@drop_count[3]: 2023
+@drop_count[7]: 2552
+@drop_count[0]: 7975
+@tcp_retrans[0]: 1
+11:00:20
+@drop_count[5]: 1307
+@drop_count[4]: 1591
+@drop_count[2]: 1639
+@drop_count[6]: 1737
+@drop_count[3]: 2063
+@drop_count[1]: 2081
+@drop_count[7]: 2591
+@drop_count[0]: 8109
+@tcp_retrans[0]: 1
+11:00:25
+@drop_count[5]: 1330
+@drop_count[4]: 1606
+@drop_count[2]: 1663
+@drop_count[6]: 1738
+@drop_count[3]: 2073
+@drop_count[1]: 2108
+@drop_count[7]: 2601
+@drop_count[0]: 8139
+@tcp_retrans[0]: 1
+11:00:30
+@drop_count[5]: 1366
+@drop_count[4]: 1637
+@drop_count[2]: 1685
+@drop_count[6]: 1738
+@drop_count[3]: 2140
+@drop_count[1]: 2147
+@drop_count[7]: 2639
+@drop_count[0]: 8306
+@tcp_retrans[0]: 1
+11:00:35
+@drop_count[5]: 1375
+@drop_count[4]: 1671
+@drop_count[2]: 1709
+@drop_count[6]: 1739
+@drop_count[3]: 2156
+@drop_count[1]: 2199
+@drop_count[7]: 2663
+@drop_count[0]: 8382
+@tcp_retrans[0]: 1
+11:00:40
+@drop_count[5]: 1423
+@drop_count[4]: 1693
+@drop_count[6]: 1739
+@drop_count[2]: 1751
+@drop_count[3]: 2173
+@drop_count[1]: 2266
+@drop_count[7]: 2672
+@drop_count[0]: 8417
+@tcp_retrans[0]: 1
+11:00:45
+@drop_count[5]: 1463
+@drop_count[6]: 1748
+@drop_count[2]: 1779
+@drop_count[4]: 1784
+@drop_count[3]: 2256
+@drop_count[1]: 2280
+@drop_count[7]: 2715
+@drop_count[0]: 8573
+@tcp_retrans[0]: 1
+11:00:50
+@drop_count[5]: 1488
+@drop_count[6]: 1767
+@drop_count[4]: 1797
+@drop_count[2]: 1809
+@drop_count[3]: 2272
+@drop_count[1]: 2295
+@drop_count[7]: 2725
+@drop_count[0]: 8589
+@tcp_retrans[0]: 1
+11:01:00
+@drop_count[5]: 1494
+@drop_count[6]: 1782
+@drop_count[2]: 1875
+@drop_count[4]: 1902
+@drop_count[3]: 2353
+@drop_count[1]: 2418
+@drop_count[7]: 2789
+@drop_count[0]: 8792
+@tcp_retrans[0]: 1
+11:01:05
+@drop_count[5]: 1494
+@drop_count[6]: 1811
+@drop_count[2]: 1930
+@drop_count[4]: 1933
+@drop_count[3]: 2421
+@drop_count[1]: 2509
+@drop_count[7]: 2817
+@drop_count[0]: 8926
+@tcp_retrans[0]: 1
+11:01:10
+@drop_count[5]: 1517
+@drop_count[6]: 1835
+@drop_count[2]: 1944
+@drop_count[4]: 1986
+@drop_count[3]: 2437
+@drop_count[1]: 2543
+@drop_count[7]: 2849
+@drop_count[0]: 8959
+@tcp_retrans[0]: 1
+11:01:15
+@drop_count[5]: 1555
+@drop_count[6]: 1856
+@drop_count[2]: 1955
+@drop_count[4]: 1988
+@drop_count[3]: 2485
+@drop_count[1]: 2614
+@drop_count[7]: 2873
+@drop_count[0]: 9061
+@tcp_retrans[0]: 1
+11:01:20
+@drop_count[5]: 1620
+@drop_count[6]: 1858
+@drop_count[2]: 1959
+@drop_count[4]: 1989
+@drop_count[3]: 2532
+@drop_count[1]: 2646
+@drop_count[7]: 2897
+@drop_count[0]: 9168
+@tcp_retrans[0]: 1
+11:01:25
+@drop_count[5]: 1635
+@drop_count[6]: 1869
+@drop_count[4]: 1989
+@drop_count[2]: 2038
+@drop_count[3]: 2570
+@drop_count[1]: 2672
+@drop_count[7]: 2913
+@drop_count[0]: 9271
+@tcp_retrans[0]: 1
+11:01:30
+@drop_count[5]: 1648
+@drop_count[6]: 1967
+@drop_count[4]: 2013
+@drop_count[2]: 2110
+@drop_count[3]: 2595
+@drop_count[1]: 2722
+@drop_count[7]: 2944
+@drop_count[0]: 9334
+@tcp_retrans[0]: 1
+11:01:35
+@drop_count[5]: 1661
+@drop_count[6]: 1972
+@drop_count[4]: 2031
+@drop_count[2]: 2132
+@drop_count[3]: 2620
+@drop_count[1]: 2737
+@drop_count[7]: 2954
+@drop_count[0]: 9355
+@tcp_retrans[0]: 1
+11:01:40
+@drop_count[5]: 1706
+@drop_count[6]: 1978
+@drop_count[4]: 2054
+@drop_count[2]: 2199
+@drop_count[3]: 2640
+@drop_count[1]: 2830
+@drop_count[7]: 2957
+@drop_count[0]: 9582
+@tcp_retrans[0]: 1
+11:01:50
+@drop_count[5]: 1807
+@drop_count[6]: 2069
+@drop_count[4]: 2125
+@drop_count[2]: 2319
+@drop_count[3]: 2738
+@drop_count[1]: 2858
+@drop_count[7]: 3023
+@drop_count[0]: 9684
+@tcp_retrans[0]: 1
+11:01:55
+@drop_count[5]: 1855
+@drop_count[6]: 2093
+@drop_count[4]: 2125
+@drop_count[2]: 2341
+@drop_count[3]: 2770
+@drop_count[1]: 2869
+@drop_count[7]: 3040
+@drop_count[0]: 9745
+@tcp_retrans[0]: 1
+11:02:00
+@drop_count[5]: 1871
+@drop_count[6]: 2128
+@drop_count[4]: 2143
+@drop_count[2]: 2409
+@drop_count[3]: 2808
+@drop_count[1]: 2893
+@drop_count[7]: 3088
+@drop_count[0]: 9914
+@tcp_retrans[0]: 1
+11:02:05
+@drop_count[5]: 1887
+@drop_count[4]: 2159
+@drop_count[6]: 2168
+@drop_count[2]: 2461
+@drop_count[3]: 2814
+@drop_count[1]: 2935
+@drop_count[7]: 3112
+@drop_count[0]: 9962
+@tcp_retrans[0]: 1
+11:02:10
+@drop_count[5]: 1903
+@drop_count[4]: 2186
+@drop_count[6]: 2198
+@drop_count[2]: 2495
+@drop_count[3]: 2859
+@drop_count[1]: 3017
+@drop_count[7]: 3127
+@drop_count[0]: 9990
+@tcp_retrans[0]: 1
+@drop_count[5]: 1912
+@drop_count[4]: 2237
+@drop_count[6]: 2251
+@drop_count[2]: 2563
+@drop_count[3]: 2870
+@drop_count[1]: 3041
+@drop_count[7]: 3156
+@drop_count[0]: 10075
+@drop_location[0xffffffffc12bf1a4]: 1
+@drop_location[0xffffffff9a4a872e]: 1
+@drop_location[0xffffffffc1d535ea]: 2
+@drop_location[0xffffffff9a5c9e4d]: 12
+@drop_location[0xffffffff9a5deba9]: 12
+@drop_location[0xffffffffc12be6af]: 12
+@drop_location[0xffffffff9a5dd80a]: 12
+@drop_location[0xffffffff9a5ca0d1]: 28
+@drop_location[0xffffffff9a661be4]: 44
+@drop_location[0xffffffffc13c4f36]: 59
+@drop_location[0xffffffff9a484ffe]: 59
+@drop_location[0xffffffff9a5881c1]: 112
+@drop_location[0xffffffffc13c4c82]: 118
+@drop_location[0xffffffff9a4a76c0]: 177
+@drop_location[0xffffffff9a54db51]: 186
+@drop_location[0xffffffff9a5c8647]: 251
+@drop_location[0xffffffff9a488eb3]: 270
+@drop_location[0xffffffff9a49129f]: 1744
+@drop_location[0xffffffffc129df3f]: 3856
+@drop_location[0xffffffff9a5a9e62]: 8740
+@drop_location[0xffffffff9a49f8c5]: 12409
+@tcp_retrans[0]: 1
+
+--- TCP SYN RECV ---
+@syn_recv[6]: 195
+@syn_recv[4]: 202
+@syn_recv[5]: 244
+@syn_recv[0]: 257
+@syn_recv[2]: 259
+@syn_recv[1]: 274
+@syn_recv[3]: 287
+@syn_recv[7]: 358
+
+
+@drop_count[5]: 1912
+@drop_count[4]: 2237
+@drop_count[6]: 2251
+@drop_count[2]: 2563
+@drop_count[3]: 2870
+@drop_count[1]: 3041
+@drop_count[7]: 3156
+@drop_count[0]: 10075
+@drop_location[0xffffffffc12bf1a4]: 1
+@drop_location[0xffffffff9a4a872e]: 1
+@drop_location[0xffffffffc1d535ea]: 2
+@drop_location[0xffffffff9a5c9e4d]: 12
+@drop_location[0xffffffff9a5deba9]: 12
+@drop_location[0xffffffffc12be6af]: 12
+@drop_location[0xffffffff9a5dd80a]: 12
+@drop_location[0xffffffff9a5ca0d1]: 28
+@drop_location[0xffffffff9a661be4]: 44
+@drop_location[0xffffffffc13c4f36]: 59
+@drop_location[0xffffffff9a484ffe]: 59
+@drop_location[0xffffffff9a5881c1]: 112
+@drop_location[0xffffffffc13c4c82]: 118
+@drop_location[0xffffffff9a4a76c0]: 177
+@drop_location[0xffffffff9a54db51]: 186
+@drop_location[0xffffffff9a5c8647]: 251
+@drop_location[0xffffffff9a488eb3]: 270
+@drop_location[0xffffffff9a49129f]: 1744
+@drop_location[0xffffffffc129df3f]: 3856
+@drop_location[0xffffffff9a5a9e62]: 8740
+@drop_location[0xffffffff9a49f8c5]: 12409
+@syn_recv[6]: 195
+@syn_recv[4]: 202
+@syn_recv[5]: 244
+@syn_recv[0]: 257
+@syn_recv[2]: 259
+@syn_recv[1]: 274
+@syn_recv[3]: 287
+@syn_recv[7]: 358
+@tcp_retrans[0]: 1

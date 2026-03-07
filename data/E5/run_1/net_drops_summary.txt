@@ -1,3 +1,629 @@
-/home/rohitkumaryadav/Desktop/GRS Project/MT25037/scripts/../ebpf_tools/24_net_drops.bt:15:22-42: ERROR: hist() only supports integer arguments (pointer provided)
-    @drop_location = hist(args->location);
-                     ~~~~~~~~~~~~~~~~~~~~
+@drop_count[2]: 8
+@drop_count[6]: 10
+@drop_count[4]: 16
+@drop_count[5]: 19
+@drop_count[7]: 23
+@drop_count[1]: 32
+@drop_count[0]: 345
+
+@drop_count[2]: 11
+@drop_count[3]: 14
+@drop_count[4]: 20
+@drop_count[6]: 20
+@drop_count[7]: 24
+@drop_count[5]: 124
+@drop_count[1]: 291
+@drop_count[0]: 398
+
+@drop_count[3]: 15
+@drop_count[7]: 24
+@drop_count[2]: 41
+@drop_count[4]: 87
+@drop_count[6]: 134
+@drop_count[5]: 229
+@drop_count[1]: 346
+@drop_count[0]: 723
+
+@drop_count[7]: 27
+@drop_count[3]: 29
+@drop_count[2]: 49
+@drop_count[6]: 153
+@drop_count[4]: 162
+@drop_count[5]: 235
+@drop_count[1]: 350
+@drop_count[0]: 963
+
+@drop_count[7]: 30
+@drop_count[3]: 41
+@drop_count[2]: 65
+@drop_count[6]: 170
+@drop_count[5]: 239
+@drop_count[4]: 366
+@drop_count[1]: 402
+@drop_count[0]: 1572
+
+@drop_count[3]: 46
+@drop_count[7]: 51
+@drop_count[6]: 182
+@drop_count[5]: 242
+@drop_count[2]: 270
+@drop_count[1]: 403
+@drop_count[4]: 640
+@drop_count[0]: 1902
+
+@drop_count[7]: 51
+@drop_count[3]: 120
+@drop_count[6]: 233
+@drop_count[5]: 299
+@drop_count[1]: 405
+@drop_count[2]: 423
+@drop_count[4]: 651
+@drop_count[0]: 1984
+
+@drop_count[7]: 83
+@drop_count[3]: 130
+@drop_count[6]: 373
+@drop_count[1]: 408
+@drop_count[2]: 444
+@drop_count[4]: 652
+@drop_count[5]: 756
+@drop_count[0]: 2361
+
+@drop_count[7]: 85
+@drop_count[3]: 131
+@drop_count[6]: 389
+@drop_count[2]: 447
+@drop_count[4]: 688
+@drop_count[1]: 743
+@drop_count[5]: 1036
+@drop_count[0]: 2523
+
+@drop_count[7]: 86
+@drop_count[3]: 154
+@drop_count[2]: 545
+@drop_count[6]: 603
+@drop_count[4]: 692
+@drop_count[1]: 805
+@drop_count[5]: 1102
+@drop_count[0]: 2793
+
+@drop_count[7]: 95
+@drop_count[3]: 157
+@drop_count[4]: 700
+@drop_count[6]: 733
+@drop_count[2]: 770
+@drop_count[1]: 821
+@drop_count[5]: 1115
+@drop_count[0]: 2974
+
+@drop_count[7]: 113
+@drop_count[3]: 158
+@drop_count[4]: 720
+@drop_count[2]: 802
+@drop_count[6]: 805
+@drop_count[1]: 954
+@drop_count[5]: 1325
+@drop_count[0]: 3076
+
+@drop_count[7]: 114
+@drop_count[3]: 163
+@drop_count[4]: 737
+@drop_count[2]: 816
+@drop_count[6]: 832
+@drop_count[1]: 1118
+@drop_count[5]: 1549
+@drop_count[0]: 3355
+
+@drop_count[7]: 122
+@drop_count[3]: 242
+@drop_count[4]: 761
+@drop_count[2]: 817
+@drop_count[6]: 866
+@drop_count[1]: 1211
+@drop_count[5]: 1670
+@drop_count[0]: 3442
+
+@drop_count[3]: 314
+@drop_count[7]: 320
+@drop_count[4]: 807
+@drop_count[2]: 844
+@drop_count[6]: 981
+@drop_count[1]: 1211
+@drop_count[5]: 1682
+@drop_count[0]: 3784
+
+@drop_count[3]: 320
+@drop_count[7]: 336
+@drop_count[4]: 817
+@drop_count[2]: 863
+@drop_count[6]: 995
+@drop_count[1]: 1242
+@drop_count[5]: 1698
+@drop_count[0]: 3849
+
+@drop_count[7]: 367
+@drop_count[3]: 402
+@drop_count[4]: 852
+@drop_count[2]: 924
+@drop_count[6]: 1048
+@drop_count[1]: 1260
+@drop_count[5]: 1743
+@drop_count[0]: 3929
+
+@drop_count[7]: 368
+@drop_count[3]: 426
+@drop_count[4]: 866
+@drop_count[2]: 949
+@drop_count[6]: 1060
+@drop_count[1]: 1282
+@drop_count[5]: 1760
+@drop_count[0]: 3970
+
+@drop_count[7]: 397
+@drop_count[3]: 456
+@drop_count[4]: 937
+@drop_count[2]: 1003
+@drop_count[6]: 1140
+@drop_count[1]: 1340
+@drop_count[5]: 1810
+@drop_count[0]: 4032
+
+@drop_count[7]: 413
+@drop_count[3]: 480
+@drop_count[4]: 950
+@drop_count[2]: 1038
+@drop_count[6]: 1159
+@drop_count[1]: 1366
+@drop_count[5]: 1821
+@drop_count[0]: 4071
+
+@drop_count[7]: 424
+@drop_count[3]: 508
+@drop_count[4]: 953
+@drop_count[2]: 1049
+@drop_count[6]: 1169
+@drop_count[1]: 1390
+@drop_count[5]: 1833
+@drop_count[0]: 4093
+
+@drop_count[7]: 471
+@drop_count[3]: 588
+@drop_count[4]: 999
+@drop_count[2]: 1112
+@drop_count[6]: 1209
+@drop_count[1]: 1462
+@drop_count[5]: 1836
+@drop_count[0]: 4186
+
+@drop_count[7]: 474
+@drop_count[3]: 610
+@drop_count[4]: 1062
+@drop_count[2]: 1132
+@drop_count[6]: 1213
+@drop_count[1]: 1487
+@drop_count[5]: 1847
+@drop_count[0]: 4208
+
+@drop_count[7]: 479
+@drop_count[3]: 615
+@drop_count[4]: 1075
+@drop_count[2]: 1144
+@drop_count[6]: 1231
+@drop_count[1]: 1508
+@drop_count[5]: 1862
+@drop_count[0]: 4240
+
+@drop_count[7]: 534
+@drop_count[3]: 659
+@drop_count[4]: 1087
+@drop_count[2]: 1186
+@drop_count[6]: 1273
+@drop_count[1]: 1567
+@drop_count[5]: 1918
+@drop_count[0]: 4301
+
+@drop_count[7]: 569
+@drop_count[3]: 660
+@drop_count[4]: 1117
+@drop_count[2]: 1211
+@drop_count[6]: 1312
+@drop_count[1]: 1598
+@drop_count[5]: 1936
+@drop_count[0]: 4366
+
+@drop_count[7]: 604
+@drop_count[3]: 689
+@drop_count[4]: 1203
+@drop_count[2]: 1266
+@drop_count[6]: 1341
+@drop_count[1]: 1695
+@drop_count[5]: 2025
+@drop_count[0]: 4483
+
+@drop_count[7]: 632
+@drop_count[3]: 723
+@drop_count[4]: 1214
+@drop_count[2]: 1284
+@drop_count[6]: 1364
+@drop_count[1]: 1736
+@drop_count[5]: 2049
+@drop_count[0]: 4545
+
+@drop_count[7]: 647
+@drop_count[3]: 784
+@drop_count[4]: 1251
+@drop_count[2]: 1362
+@drop_count[6]: 1376
+@drop_count[1]: 1763
+@drop_count[5]: 2100
+@drop_count[0]: 4589
+
+@drop_count[7]: 665
+@drop_count[3]: 798
+@drop_count[4]: 1257
+@drop_count[2]: 1380
+@drop_count[6]: 1391
+@drop_count[1]: 1796
+@drop_count[5]: 2111
+@drop_count[0]: 4615
+
+@drop_count[7]: 693
+@drop_count[3]: 813
+@drop_count[4]: 1328
+@drop_count[6]: 1468
+@drop_count[2]: 1488
+@drop_count[1]: 1803
+@drop_count[5]: 2155
+@drop_count[0]: 4694
+
+@drop_count[7]: 700
+@drop_count[3]: 833
+@drop_count[4]: 1350
+@drop_count[6]: 1480
+@drop_count[2]: 1497
+@drop_count[1]: 1818
+@drop_count[5]: 2166
+@drop_count[0]: 4722
+
+@drop_count[7]: 750
+@drop_count[3]: 920
+@drop_count[4]: 1410
+@drop_count[2]: 1498
+@drop_count[6]: 1518
+@drop_count[1]: 1875
+@drop_count[5]: 2220
+@drop_count[0]: 4798
+
+@drop_count[7]: 763
+@drop_count[3]: 973
+@drop_count[4]: 1422
+@drop_count[2]: 1523
+@drop_count[6]: 1541
+@drop_count[1]: 1910
+@drop_count[5]: 2239
+@drop_count[0]: 4846
+
+@drop_count[7]: 768
+@drop_count[3]: 991
+@drop_count[4]: 1458
+@drop_count[2]: 1548
+@drop_count[6]: 1549
+@drop_count[1]: 1957
+@drop_count[5]: 2307
+@drop_count[0]: 4891
+
+@drop_count[7]: 775
+@drop_count[3]: 996
+@drop_count[4]: 1483
+@drop_count[6]: 1610
+@drop_count[2]: 1615
+@drop_count[1]: 2021
+@drop_count[5]: 2341
+@drop_count[0]: 4978
+
+@drop_count[7]: 784
+@drop_count[3]: 1005
+@drop_count[4]: 1496
+@drop_count[2]: 1634
+@drop_count[6]: 1644
+@drop_count[1]: 2024
+@drop_count[5]: 2368
+@drop_count[0]: 5001
+
+@drop_count[7]: 784
+@drop_count[3]: 1071
+@drop_count[4]: 1530
+@drop_count[6]: 1703
+@drop_count[2]: 1714
+@drop_count[1]: 2105
+@drop_count[5]: 2462
+@drop_count[0]: 5066
+
+@drop_count[7]: 785
+@drop_count[3]: 1087
+@drop_count[4]: 1550
+@drop_count[6]: 1710
+@drop_count[2]: 1726
+@drop_count[1]: 2122
+@drop_count[5]: 2482
+@drop_count[0]: 5106
+
+@drop_count[7]: 799
+@drop_count[3]: 1097
+@drop_count[4]: 1555
+@drop_count[6]: 1745
+@drop_count[2]: 1774
+@drop_count[1]: 2169
+@drop_count[5]: 2549
+@drop_count[0]: 5169
+
+@drop_count[7]: 828
+@drop_count[3]: 1147
+@drop_count[4]: 1568
+@drop_count[6]: 1760
+@drop_count[2]: 1813
+@drop_count[1]: 2184
+@drop_count[5]: 2602
+@drop_count[0]: 5216
+
+@drop_count[7]: 830
+@drop_count[3]: 1157
+@drop_count[4]: 1573
+@drop_count[6]: 1780
+@drop_count[2]: 1827
+@drop_count[1]: 2200
+@drop_count[5]: 2611
+@drop_count[0]: 5231
+
+@drop_count[7]: 857
+@drop_count[3]: 1213
+@drop_count[4]: 1633
+@drop_count[6]: 1817
+@drop_count[2]: 1862
+@drop_count[1]: 2277
+@drop_count[5]: 2650
+@drop_count[0]: 5378
+
+@drop_count[7]: 868
+@drop_count[3]: 1227
+@drop_count[4]: 1634
+@drop_count[6]: 1828
+@drop_count[2]: 1867
+@drop_count[1]: 2300
+@drop_count[5]: 2677
+@drop_count[0]: 5408
+
+@drop_count[7]: 943
+@drop_count[3]: 1241
+@drop_count[4]: 1634
+@drop_count[6]: 1889
+@drop_count[2]: 1940
+@drop_count[1]: 2346
+@drop_count[5]: 2745
+@drop_count[0]: 5468
+
+@drop_count[7]: 959
+@drop_count[3]: 1274
+@drop_count[4]: 1655
+@drop_count[6]: 1904
+@drop_count[2]: 1970
+@drop_count[1]: 2377
+@drop_count[5]: 2769
+@drop_count[0]: 5493
+
+@drop_count[7]: 975
+@drop_count[3]: 1293
+@drop_count[4]: 1664
+@drop_count[6]: 1916
+@drop_count[2]: 1980
+@drop_count[1]: 2391
+@drop_count[5]: 2791
+@drop_count[0]: 5510
+
+@drop_count[7]: 1013
+@drop_count[3]: 1337
+@drop_count[4]: 1714
+@drop_count[6]: 1974
+@drop_count[2]: 2062
+@drop_count[1]: 2422
+@drop_count[5]: 2842
+@drop_count[0]: 5628
+
+@drop_count[7]: 1028
+@drop_count[3]: 1372
+@drop_count[4]: 1716
+@drop_count[6]: 1982
+@drop_count[2]: 2075
+@drop_count[1]: 2440
+@drop_count[5]: 2860
+@drop_count[0]: 5665
+
+@drop_count[7]: 1100
+@drop_count[3]: 1460
+@drop_count[4]: 1770
+@drop_count[6]: 1992
+@drop_count[2]: 2106
+@drop_count[1]: 2502
+@drop_count[5]: 2923
+@drop_count[0]: 5757
+
+@drop_count[7]: 1122
+@drop_count[3]: 1473
+@drop_count[4]: 1773
+@drop_count[6]: 2000
+@drop_count[2]: 2125
+@drop_count[1]: 2515
+@drop_count[5]: 2945
+@drop_count[0]: 5790
+
+@drop_count[7]: 1143
+@drop_count[3]: 1489
+@drop_count[4]: 1778
+@drop_count[6]: 2026
+@drop_count[2]: 2145
+@drop_count[1]: 2527
+@drop_count[5]: 2960
+@drop_count[0]: 5807
+
+@drop_count[7]: 1182
+@drop_count[3]: 1559
+@drop_count[4]: 1795
+@drop_count[6]: 2084
+@drop_count[2]: 2239
+@drop_count[1]: 2548
+@drop_count[5]: 3020
+@drop_count[0]: 5881
+
+@drop_count[7]: 1186
+@drop_count[3]: 1575
+@drop_count[4]: 1810
+@drop_count[6]: 2104
+@drop_count[2]: 2262
+@drop_count[1]: 2552
+@drop_count[5]: 3026
+@drop_count[0]: 5887
+
+@drop_count[7]: 1225
+@drop_count[3]: 1609
+@drop_count[4]: 1866
+@drop_count[6]: 2161
+@drop_count[2]: 2315
+@drop_count[1]: 2627
+@drop_count[5]: 3118
+@drop_count[0]: 5945
+
+@drop_count[7]: 1242
+@drop_count[3]: 1631
+@drop_count[4]: 1890
+@drop_count[6]: 2164
+@drop_count[2]: 2325
+@drop_count[1]: 2650
+@drop_count[5]: 3139
+@drop_count[0]: 5976
+
+@drop_count[7]: 1243
+@drop_count[3]: 1689
+@drop_count[4]: 1924
+@drop_count[6]: 2217
+@drop_count[2]: 2399
+@drop_count[1]: 2707
+@drop_count[5]: 3225
+@drop_count[0]: 6022
+
+@drop_count[7]: 1252
+@drop_count[3]: 1709
+@drop_count[4]: 1952
+@drop_count[6]: 2260
+@drop_count[2]: 2407
+@drop_count[1]: 2717
+@drop_count[5]: 3242
+@drop_count[0]: 6037
+
+@drop_count[7]: 1269
+@drop_count[3]: 1716
+@drop_count[4]: 1970
+@drop_count[6]: 2285
+@drop_count[2]: 2415
+@drop_count[1]: 2743
+@drop_count[5]: 3261
+@drop_count[0]: 6050
+
+@drop_count[7]: 1282
+@drop_count[3]: 1720
+@drop_count[4]: 1982
+@drop_count[6]: 2291
+@drop_count[2]: 2428
+@drop_count[1]: 2759
+@drop_count[5]: 3283
+@drop_count[0]: 6064
+
+@drop_count[7]: 1305
+@drop_count[3]: 1771
+@drop_count[4]: 2033
+@drop_count[6]: 2329
+@drop_count[2]: 2453
+@drop_count[1]: 2828
+@drop_count[5]: 3358
+@drop_count[0]: 6181
+
+@drop_count[7]: 1318
+@drop_count[3]: 1800
+@drop_count[4]: 2038
+@drop_count[6]: 2364
+@drop_count[2]: 2474
+@drop_count[1]: 2850
+@drop_count[5]: 3378
+@drop_count[0]: 6207
+
+@drop_count[7]: 1330
+@drop_count[3]: 1819
+@drop_count[4]: 2049
+@drop_count[6]: 2376
+@drop_count[2]: 2475
+@drop_count[1]: 2859
+@drop_count[5]: 3384
+@drop_count[0]: 6229
+@drop_location[0xffffffff9a5dd80a]: 7
+@drop_location[0xffffffff9a5deba9]: 10
+@drop_location[0xffffffff9a5c9e4d]: 10
+@drop_location[0xffffffffc12be6af]: 12
+@drop_location[0xffffffff9a661be4]: 18
+@drop_location[0xffffffff9a5ca0d1]: 28
+@drop_location[0xffffffff9a484ffe]: 56
+@drop_location[0xffffffffc13c4f36]: 56
+@drop_location[0xffffffff9a5881c1]: 91
+@drop_location[0xffffffffc13c4c82]: 112
+@drop_location[0xffffffff9a4a76c0]: 168
+@drop_location[0xffffffff9a488eb3]: 270
+@drop_location[0xffffffff9a5c8647]: 305
+@drop_location[0xffffffff9a49129f]: 1555
+@drop_location[0xffffffffc129df3f]: 2984
+@drop_location[0xffffffff9a5a9e62]: 6308
+@drop_location[0xffffffff9a49f8c5]: 10531
+
+
+--- TCP SYN RECV ---
+@syn_recv[3]: 161
+@syn_recv[7]: 195
+@syn_recv[6]: 211
+@syn_recv[2]: 243
+@syn_recv[1]: 270
+@syn_recv[4]: 274
+@syn_recv[5]: 277
+@syn_recv[0]: 285
+
+
+@drop_count[7]: 1330
+@drop_count[3]: 1819
+@drop_count[4]: 2049
+@drop_count[6]: 2376
+@drop_count[2]: 2475
+@drop_count[1]: 2859
+@drop_count[5]: 3384
+@drop_count[0]: 6229
+@drop_location[0xffffffff9a5dd80a]: 7
+@drop_location[0xffffffff9a5deba9]: 10
+@drop_location[0xffffffff9a5c9e4d]: 10
+@drop_location[0xffffffffc12be6af]: 12
+@drop_location[0xffffffff9a661be4]: 18
+@drop_location[0xffffffff9a5ca0d1]: 28
+@drop_location[0xffffffff9a484ffe]: 56
+@drop_location[0xffffffffc13c4f36]: 56
+@drop_location[0xffffffff9a5881c1]: 91
+@drop_location[0xffffffffc13c4c82]: 112
+@drop_location[0xffffffff9a4a76c0]: 168
+@drop_location[0xffffffff9a488eb3]: 270
+@drop_location[0xffffffff9a5c8647]: 305
+@drop_location[0xffffffff9a49129f]: 1555
+@drop_location[0xffffffffc129df3f]: 2984
+@drop_location[0xffffffff9a5a9e62]: 6308
+@drop_location[0xffffffff9a49f8c5]: 10531
+@syn_recv[3]: 161
+@syn_recv[7]: 195
+@syn_recv[6]: 211
+@syn_recv[2]: 243
+@syn_recv[1]: 270
+@syn_recv[4]: 274
+@syn_recv[5]: 277
+@syn_recv[0]: 285
+

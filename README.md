@@ -17,9 +17,10 @@ On commodity Linux systems, the kernel's softirq processing path (`NET_RX_SOFTIR
 | 1 | **CPU contention is the dominant scheduling delay source** | 27× increase in p99 (149 μs → 4,096 μs) |
 | 2 | **Softirq follows socket affinity on veth, not RPS** | Gini coefficient 0.66–0.78 across experiments |
 | 3 | **UDP and TCP produce equivalent p99 under stress** | Both 4,096 μs — CPU contention dominates |
-| 4 | **`SO_BUSY_POLL` reduces context switches by 25%** | E16: 0.37M vs E4: 0.49M voluntary switches |
-| 5 | **No software mitigation fixes CPU starvation** | All mitigations show identical p99 = 4,096 μs |
-| 6 | **1 ms p99 threshold: moderate → heavy stress** | E13: 683 μs (moderate) vs E4: 4,096 μs (heavy) |
+| 4 | **The stress cliff is non-linear** | Moderate stress: 683 μs vs Heavy: 4,096 μs |
+| 5 | **No single mitigation fixes CPU starvation** | All mitigations show identical p99 = 4,096 μs |
+| 6 | **Mitigation stacking is counter-productive** | Highest tail latency seen with RPS + Pin + CFS |
+| 7 | **`SO_BUSY_POLL` reduces context switches by 19%** | E16: 27.3M vs E4: 33.8M context switches |
 
 ## 📊 Sample Results
 
@@ -183,6 +184,16 @@ sudo scripts/24_setup_testbed.sh teardown
 | **H2** | CPU + net stress is super-linear | **Not testable** — p99 saturates at 4,096 μs histogram bucket |
 | **H3** | CFS tuning reduces p99 by ≥30% | **Falsified** — E9 and E10 produce identical p99 to E4 |
 | **H4** | Combined mitigations reduce p99 by ≥20% | **Falsified** — No mitigation achieved any p99 improvement |
+
+## 🏆 Best Configurations by Goal
+
+| Goal | Best Experiment | Key Metric |
+|---|---|---|
+| Highest throughput | E2 (no stress, high net) | 14.88 Gbps |
+| Best throughput under stress | E6 (RPS spread) | 9.91 Gbps (+21% vs E4) |
+| Fewest context switches | E16 (busy poll, no RPS) | 27.3M |
+| Fewest CPU migrations | E16 (busy poll, no RPS) | 2.2M |
+| Tightest scheduling delay | E1/E2 (no stress) | Peak at `[2,4)` μs |
 
 ## ⚠️ Known Limitations
 

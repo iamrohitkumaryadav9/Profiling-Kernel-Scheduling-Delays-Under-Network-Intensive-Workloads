@@ -1,4 +1,4 @@
 net.core.netdev_budget = 300
-net.core.netdev_budget_usecs = 2000
+net.core.netdev_budget_usecs = 8000
 net.core.busy_poll = 0
 net.core.busy_read = 0

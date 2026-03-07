@@ -144,9 +144,10 @@ start_cpu_stress() {
             echo "  Moderate CPU stress (2 cores), PID=$STRESS_PID"
             ;;
         heavy)
-            stress-ng --cpu "$NUM_CPUS" --cpu-method matrixprod --timeout $((DURATION + WARMUP + 10))s &
+            STRESS_CORES=$(( NUM_CPUS > 2 ? NUM_CPUS - 2 : NUM_CPUS ))
+            stress-ng --cpu "$STRESS_CORES" --cpu-method matrixprod --timeout $((DURATION + WARMUP + 10))s &
             STRESS_PID=$!
-            echo "  Heavy CPU stress ($NUM_CPUS cores), PID=$STRESS_PID"
+            echo "  Heavy CPU stress ($STRESS_CORES cores), PID=$STRESS_PID"
             ;;
     esac
 }
@@ -280,17 +281,20 @@ run_load() {
     # ─── Measurement phase ───
     # Start memcslap in background (application-level latency)
     ip netns exec cli $pin_flag memcslap -s "$SERVER_IP:11211" \
-        -c 32 --execute-number=10000000 \
+        -c 32 --execute-number=500000 \
         > "$outdir/memcslap_result.txt" 2>&1 &
     local MEMCSLAP_PID=$!
-    echo "  memcslap started (PID=$MEMCSLAP_PID, -c32 --execute-number=10000000)"
+    echo "  memcslap started (PID=$MEMCSLAP_PID, -c32 --execute-number=500000)"
 
     # Run iperf3 in foreground (blocks until done)
     ip netns exec cli $pin_flag iperf3 -c "$SERVER_IP" -t "$DURATION" $bandwidth $udp_flag \
         --json > "$outdir/iperf3_result.json" 2>&1 || true
 
-    # Wait for memcslap to finish
-    wait "$MEMCSLAP_PID" 2>/dev/null || true
+    # Kill memcslap once the 60s duration is over
+    if kill -0 "$MEMCSLAP_PID" 2>/dev/null; then
+        kill -INT "$MEMCSLAP_PID" 2>/dev/null || true
+        wait "$MEMCSLAP_PID" 2>/dev/null || true
+    fi
     echo "  memcslap completed → $outdir/memcslap_result.txt"
 }
 

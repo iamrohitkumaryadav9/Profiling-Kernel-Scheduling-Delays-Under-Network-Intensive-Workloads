@@ -11,10 +11,10 @@ BEGIN
 
 tracepoint:sched:sched_migrate_task
 {
-    @migrations[args->pid, args->comm] = count();
+    @migrations[args->pid, comm] = count();
     @migration_pairs[args->orig_cpu, args->dest_cpu] = count();
     printf("%lu,%d,%s,%d,%d\n",
-        nsecs, args->pid, args->comm, args->orig_cpu, args->dest_cpu);
+        nsecs, args->pid, comm, args->orig_cpu, args->dest_cpu);
 }
 
 interval:s:5

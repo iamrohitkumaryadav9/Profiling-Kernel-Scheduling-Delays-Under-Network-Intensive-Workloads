@@ -234,11 +234,17 @@ def plot_h2_comparison(data_dir, output_dir, num_cpus=20):
     x_pos = np.arange(len(exps_to_compare))
     width = 0.35
 
-    bars1 = ax2.bar(x_pos - width / 2, [s / 1000 for s in squeeze_totals], width,
+    sq_vals = [s / 1000 for s in squeeze_totals]
+    vs_vals = [v / 1000 for v in vol_switches]
+
+    bars1 = ax2.bar(x_pos - width / 2, sq_vals, width,
                      color=colors, alpha=0.85, label='Time Squeeze (K)')
     ax2_twin = ax2.twinx()
-    bars2 = ax2_twin.bar(x_pos + width / 2, [v / 1000 for v in vol_switches], width,
+    bars2 = ax2_twin.bar(x_pos + width / 2, vs_vals, width,
                           color=colors, alpha=0.4, hatch='///', label='Vol. Switches (K)')
+
+    ax2.set_ylim(0, max(sq_vals) * 1.2 if sq_vals and max(sq_vals) > 0 else 5)
+    ax2_twin.set_ylim(0, max(vs_vals) * 1.2 if vs_vals and max(vs_vals) > 0 else 5)
 
     ax2.set_xticks(x_pos)
     ax2.set_xticklabels(exps_to_compare)
@@ -251,10 +257,10 @@ def plot_h2_comparison(data_dir, output_dir, num_cpus=20):
 
     # Add value labels
     for bar, val in zip(bars1, squeeze_totals):
-        ax2.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.1,
+        ax2.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + (ax2.get_ylim()[1]*0.02),
                  f'{val:.0f}', ha='center', va='bottom', color='#e0e0e0', fontsize=9)
     for bar, val in zip(bars2, vol_switches):
-        ax2_twin.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 5,
+        ax2_twin.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + (ax2_twin.get_ylim()[1]*0.02),
                        f'{val/1000:.0f}K', ha='center', va='bottom', color='#e0e0e0', fontsize=9)
 
     plt.tight_layout()

@@ -1,0 +1,6 @@
+Time to generate     500000 test keys:                2.435 seconds.
+Time to start            32 threads:                  0.008 seconds.
+--------------------------------------------------------------------
+Time to set        16000000 keys by   32 threads:   306.055 seconds.
+--------------------------------------------------------------------
+Time total:                                         308.499 seconds.

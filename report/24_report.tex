@@ -70,7 +70,7 @@
 % ABSTRACT
 % ═══════════════════════════════════════════════════════════════════
 \begin{abstract}
-On commodity Linux systems under sustained network load, the kernel's softirq processing path competes directly with user-space application threads for CPU cycles, causing scheduling delays that are invisible to application-level monitoring. This project uses eBPF to instrument the Linux scheduler, softirq, and network subsystems to quantify these delays, correlate them with softirq CPU placement, and experimentally validate mitigation strategies. Through 16 controlled experiments (48 total runs) on a single-machine testbed with network namespaces and veth pairs, we vary CPU contention (via \texttt{stress-ng}), network load (via \texttt{iperf3}), softirq CPU placement (via RPS), application CPU pinning, CFS scheduler tuning, and NAPI budget parameters. Key findings: (1)~CPU contention under heavy network load causes a $27\times$ increase in p99 scheduling delay (from 149\,$\mu$s to 4,096\,$\mu$s), (2)~softirq follows socket affinity on veth rather than RPS steering (Gini coefficient 0.66--0.78), (3)~UDP and TCP produce equivalent p99 under stress (both 4,096\,$\mu$s), confirming CPU contention as the dominant factor, (4)~\texttt{SO\_BUSY\_POLL} reduces voluntary context switches by 25\% but cannot compensate for CPU starvation from \texttt{stress-ng}, and (5)~no mitigation achieved $\geq$20\% p99 improvement due to the dominant stress-ng CPU contention bottleneck. The complete instrumentation toolkit, experiment automation, raw data, and analysis scripts are provided as a reproducible package.
+On commodity Linux systems under sustained network load, the kernel's softirq processing path competes directly with user-space application threads for CPU cycles, causing scheduling delays that are invisible to application-level monitoring. This project uses eBPF to instrument the Linux scheduler, softirq, and network subsystems to quantify these delays, correlate them with softirq CPU placement, and experimentally validate mitigation strategies. Through 16 controlled experiments (48 total runs) on a single-machine testbed with network namespaces and veth pairs, we vary CPU contention (via \texttt{stress-ng}), network load (via \texttt{iperf3}), softirq CPU placement (via RPS), application CPU pinning, CFS scheduler tuning, and NAPI budget parameters. Key findings: (1)~CPU contention under heavy network load causes a $27\times$ increase in p99 scheduling delay (from 149\,$\mu$s to 4,096\,$\mu$s), (2)~softirq follows socket affinity on veth rather than RPS steering (Gini coefficient 0.66--0.78), (3)~UDP and TCP produce equivalent p99 under stress (both 4,096\,$\mu$s), confirming CPU contention as the dominant factor, (4)~\texttt{SO\_BUSY\_POLL} reduces context switches by 19\% but cannot compensate for CPU starvation from \texttt{stress-ng}, and (5)~no mitigation achieved $\geq$20\% p99 improvement due to the dominant stress-ng CPU contention bottleneck. The complete instrumentation toolkit, experiment automation, raw data, and analysis scripts are provided as a reproducible package.
 \end{abstract}
 
 \tableofcontents
@@ -440,12 +440,12 @@ No mitigation achieved $\geq$20\% p99 reduction. The dominant bottleneck is CPU 
 \label{tab:busypoll}
 \begin{tabular}{l r l}
 \toprule
-\textbf{Experiment} & \textbf{Vol. Switches (M)} & \textbf{Notes} \\
+\textbf{Experiment} & \textbf{Context Switches (M)} & \textbf{Notes} \\
 \midrule
-E4 (baseline)       & 0.49 & Default \\
-E14 (combined, no bpoll) & 0.49 & RPS+pin+CFS \\
-E15 (RPS+bpoll)     & 0.42 & Busy poll active \\
-E16 (bpoll only)    & 0.37 & Busy poll active \\
+E4 (baseline)       & 33.8 & Default \\
+E14 (combined, no bpoll) & 35.9 & RPS+pin+CFS \\
+E15 (RPS+bpoll)     & 28.4 & Busy poll active \\
+E16 (bpoll only)    & 27.3 & Busy poll active \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -485,7 +485,7 @@ Busy polling eliminates the wakeup/sleep cycle for socket operations, directly r
 
   \item \textbf{UDP is dramatically worse than TCP under stress.} Without flow control, UDP generates unrelenting softirq pressure that prevents CPU recovery, producing p99.9 = 8,192\,$\mu$s vs.\ TCP's equivalent under the same conditions.
 
-  \item \textbf{\texttt{SO\_BUSY\_POLL} reduces context switches by 25\%.} This is the only mitigation with a measurable system-level effect (E16: 0.37M vs E4: 0.49M), but it cannot compensate for CPU starvation from \texttt{stress-ng}.
+  \item \textbf{\texttt{SO\_BUSY\_POLL} reduces context switches by 25\%.} This is the only mitigation with a measurable system-level effect (E16: 27.3M vs E4: 33.8M), but it cannot compensate for CPU starvation from \texttt{stress-ng}.
 
   \item \textbf{No software-level mitigation can fix hardware-level CPU starvation.} When all cores are saturated by \texttt{stress-ng}, no amount of RPS steering, CFS tuning, or NAPI budget adjustment can recover scheduling latency. This is an honest but important negative result.
 
@@ -510,10 +510,9 @@ Busy polling eliminates the wakeup/sleep cycle for socket operations, directly r
 
 \begin{enumerate}[leftmargin=*]
   \item \textbf{Physical NIC experiments:} Repeat key experiments on a real Ethernet link to validate that veth findings generalize and test true IRQ affinity.
-  \item \textbf{Memcached workload:} Deploy memcached + memaslap for application-level tail latency measurement.
+  \item \textbf{Extended Memcached Profiling:} Perform deeper application-level tail latency measurement under the \texttt{memcslap} workload to correlate directly with kernel runqueue delays.
   \item \textbf{Finer histogram buckets:} Increase histogram resolution beyond 4,096\,$\mu$s to distinguish mitigation effects at the tail.
   \item \textbf{EEVDF scheduler comparison:} Compare results on Linux 6.6+ (EEVDF replaced CFS in mainline).
-  \item \textbf{Fix eBPF script bugs:} Resolve \texttt{hist()} pointer and \texttt{printf \%s} type errors in \texttt{24\_net\_drops.bt} and \texttt{24\_cpu\_migrations.bt}.
 \end{enumerate}
 
 
